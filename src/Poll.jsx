@@ -79,7 +79,7 @@ const PollQuestion = ({ poll, userId }) => {
           handlesubmitVote(e);
         }}
       >
-        {poll.options.map(({ id, text }) => (
+        {poll.options.map(({ id, text, comment }) => (
           <Form.Check
             custom
             type="radio"
@@ -87,7 +87,7 @@ const PollQuestion = ({ poll, userId }) => {
             id={id}
             key={id}
             value={id}
-            label={text}
+            label={text + (comment ? ` (${comment})` : '')}
             onChange={handleOptionChange}
           />
         ))}
