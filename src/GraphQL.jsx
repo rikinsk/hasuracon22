@@ -10,6 +10,7 @@ const QUERY_GET_POLL = gql`
       options(order_by: { id: desc }) {
         id
         text
+        comment
       }
     }
   }
