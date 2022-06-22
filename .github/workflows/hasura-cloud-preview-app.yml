@@ -39,5 +39,5 @@ jobs:
         with:
           url: "https://api.vercel.com//v9/projects/rikinsk-hasuracon22/env"
           method: "POST"
-          customHeaders: "{'Content-Type': 'application/json', 'Authorization': 'Bearer ${{secrets.VERCEL_API_TOKEN}}'"
-          data: "{'key':'REACT_APP_GRAPHQL_HOST', 'value': 'preview-hasuracon22-${{github.event.number}}.hasura.app', 'gitBranch': '${{github.ref_name}}'}"
+          customHeaders: '{"Content-Type": "application/json", "Authorization": "Bearer some-token"'
+          data: '{"key":"REACT_APP_GRAPHQL_HOST", "value": "preview-hasuracon22-${{github.event.number}}.hasura.app", "gitBranch": "${{github.ref_name}}"}'
