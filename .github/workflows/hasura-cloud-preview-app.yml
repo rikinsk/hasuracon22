@@ -28,7 +28,7 @@ jobs:
           github-token: ${{secrets.GITHUB_TOKEN}}
           id: preview_app_comment
           number: ${{github.event.number}}
-          repository: ${{env.GITHUB_REPOSITORY}}
+          repository: "rikinsk/hasuracon22"
           message: |
             Console URL available at ${{steps.hasura_cloud_preview.outputs.consoleURL}}
             GraphQL Endpoint available at ${{steps.hasura_cloud_preview.outputs.graphQLEndpoint}}
