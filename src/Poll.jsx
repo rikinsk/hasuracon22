@@ -87,7 +87,7 @@ const PollQuestion = ({ poll, userId }) => {
             id={id}
             key={id}
             value={id}
-            label={text + (comment ? ` (${comment})` : '')}
+            label={text + (comment ? ` - ${comment}` : '')}
             onChange={handleOptionChange}
           />
         ))}
