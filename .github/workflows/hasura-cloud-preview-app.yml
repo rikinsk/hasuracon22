@@ -9,35 +9,35 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: hasura/hasura-cloud-preview-apps@v0.1.7
-        id: hasura_cloud_preview
-        with:
-          name: "preview-hasuracon22-${{github.event.number}}"
-          postgresDBConfig: |
-            POSTGRES_SERVER_CONNECTION_URI=${{secrets.POSTGRES_SERVER_CONNECTION_URI}}
-            PG_ENV_VARS_FOR_HASURA=PG_DATABASE_URL
-          hasuraProjectDirectoryPath: /hasura
-          region: us-west-1
-          tier: cloud_free
-          hasuraEnv: |
-            HASURA_GRAPHQL_ADMIN_SECRET=${{secrets.PREVIEW_APP_ADMIN_SECRET}}
-            
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          HASURA_CLOUD_ACCESS_TOKEN: ${{secrets.HASURA_CLOUD_ACCESS_TOKEN}}
-      - uses: hasura/comment-progress@v2.1.0
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          id: preview_app_comment
-          number: ${{github.event.number}}
-          repository: ${{github.repository}}
-          message: |
-            Console URL available at ${{steps.hasura_cloud_preview.outputs.consoleURL}}
-            GraphQL Endpoint available at ${{steps.hasura_cloud_preview.outputs.graphQLEndpoint}}
+#      - uses: hasura/hasura-cloud-preview-apps@v0.1.7
+#        id: hasura_cloud_preview
+#        with:
+#          name: "preview-hasuracon22-${{github.event.number}}"
+#          postgresDBConfig: |
+#            POSTGRES_SERVER_CONNECTION_URI=${{secrets.POSTGRES_SERVER_CONNECTION_URI}}
+#            PG_ENV_VARS_FOR_HASURA=PG_DATABASE_URL
+#          hasuraProjectDirectoryPath: /hasura
+#          region: us-west-1
+#          tier: cloud_free
+#          hasuraEnv: |
+#            HASURA_GRAPHQL_ADMIN_SECRET=${{secrets.PREVIEW_APP_ADMIN_SECRET}}
+#
+#        env:
+#          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+#          HASURA_CLOUD_ACCESS_TOKEN: ${{secrets.HASURA_CLOUD_ACCESS_TOKEN}}
+#      - uses: hasura/comment-progress@v2.1.0
+#        with:
+#          github-token: ${{secrets.GITHUB_TOKEN}}
+#          id: preview_app_comment
+#          number: ${{github.event.number}}
+#          repository: ${{github.repository}}
+#          message: |
+#            Console URL available at ${{steps.hasura_cloud_preview.outputs.consoleURL}}
+#            GraphQL Endpoint available at ${{steps.hasura_cloud_preview.outputs.graphQLEndpoint}}
       - name: Update env var
         uses: fjogeleit/http-request-action@v1
         with:
           url: "https://api.vercel.com//v9/projects/rikinsk-hasuracon22/env"
-          method: 'POST'
-          customHeaders: '{"Content-Type": "application/json", "Authorization": "Bearer ${{secrets.VERCEL_API_TOKEN}}"'
-          data: '{"key":"REACT_APP_GRAPHQL_HOST", "value": "preview-hasuracon22-${{github.event.number}}.hasura.app", "gitBranch": "${{github.ref_name}}"}'
+          method: "POST"
+          customHeaders: "{'Content-Type': 'application/json', 'Authorization': 'Bearer ${{secrets.VERCEL_API_TOKEN}}'"
+          data: "{'key':'REACT_APP_GRAPHQL_HOST', 'value': 'preview-hasuracon22-${{github.event.number}}.hasura.app', 'gitBranch': '${{github.ref_name}}'}"
