@@ -1,0 +1,22 @@
+table:
+  schema: public
+  name: poll_results
+object_relationships:
+  - name: option
+    using:
+      manual_configuration:
+        remote_table:
+          schema: public
+          name: option
+        insertion_order: null
+        column_mapping:
+          option_id: id
+  - name: poll
+    using:
+      manual_configuration:
+        remote_table:
+          schema: public
+          name: poll
+        insertion_order: null
+        column_mapping:
+          poll_id: id
