@@ -12,7 +12,7 @@ jobs:
       - uses: hasura/hasura-cloud-preview-apps@v0.1.7
         id: hasura_cloud_preview
         with:
-          name: "preview-hasuracon22-${{github.env.GITHUB_HEAD_REF}}${{github.event.number}}"
+          name: "preview-hasuracon22-${{github.event.number}}"
           postgresDBConfig: |
             POSTGRES_SERVER_CONNECTION_URI=${{secrets.POSTGRES_SERVER_CONNECTION_URI}}
             PG_ENV_VARS_FOR_HASURA=PG_DATABASE_URL
@@ -20,6 +20,7 @@ jobs:
           region: us-west-1
           tier: cloud_free
           hasuraEnv: |
+            HASURA_GRAPHQL_ADMIN_SECRET=${{secrets.PREVIEW_APP_ADMIN_SECRET}}
             
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -29,7 +30,7 @@ jobs:
           github-token: ${{secrets.GITHUB_TOKEN}}
           id: preview_app_comment
           number: ${{github.event.number}}
-          repository: "rikinsk/hasuracon22"
+          repository: ${{github.repository}}
           message: |
             Console URL available at ${{steps.hasura_cloud_preview.outputs.consoleURL}}
             GraphQL Endpoint available at ${{steps.hasura_cloud_preview.outputs.graphQLEndpoint}}
