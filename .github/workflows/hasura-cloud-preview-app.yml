@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: hasura/hasura-cloud-preview-apps@v0.1.5
+      - uses: hasura/hasura-cloud-preview-apps@v0.1.7
         with:
           name: "preview-hasuracon22-${{github.env.GITHUB_HEAD_REF}}${{github.event.number}}"
           postgresDBConfig: |
