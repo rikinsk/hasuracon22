@@ -20,7 +20,7 @@ jobs:
       - name: Redeploy Vercel preview app
         uses: fjogeleit/http-request-action@v1
         with:
-          url: "https://api.vercel.com/v9/projects/rikinsk-hasuracon22/env"
+          url: "https://vercel.com/api/v13/deployments?forceNew=1"
           method: "POST"
           customHeaders: '{"Content-Type": "application/json", "Authorization": "Bearer ${{secrets.VERCEL_API_TOKEN}}"}'
           data: '{"name":"rikinsk-hasuracon22","gitSource":{"ref":"${{github.head_ref}}","org":"rikinsk", "repo":"hasuracon22", "sha":"${{github.sha}}","type":"github","prId":null}}'
