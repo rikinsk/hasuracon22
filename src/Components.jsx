@@ -15,6 +15,7 @@ export const Header = () => (
     <div className="container displayFlex">
       <img src={logo} className="App-logo" alt="logo" />
       <h1 className="App-title">Realtime Poll</h1>
+      <div className="margin-left-20">GraphQL Host: {process.env.REACT_APP_GRAPHQL_HOST || "localhost:8080"}</div>
     </div>
   </header>
 );
