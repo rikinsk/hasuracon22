@@ -16,6 +16,7 @@ jobs:
           method: "POST"
           customHeaders: '{"Content-Type": "application/json", "Authorization": "Bearer ${{secrets.VERCEL_API_TOKEN}}"}'
           data: '{"key":"REACT_APP_GRAPHQL_HOST", "value": "preview-hasuracon22-${{github.event.number}}.hasura.app", "gitBranch": "${{github.head_ref}}", "type":"encrypted", "target":["preview"]}'
+        continue-on-error: true
       - name: Redeploy Vercel preview app
         uses: fjogeleit/http-request-action@v1
         with:
